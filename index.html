@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>极客起始</title>
+        <style>
+            /* 添加背景图片 */
+            body:before {
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                opacity: 0.3;
+                z-index: -1;
+                content: "";
+                position: fixed;
+                background: url(https://bing.img.run/rand.php) center/cover;
+            }
+
+            /* 添加CSS样式以使body内容居中 */
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh; /* 使用视口单位使高度适应屏幕大小 */
+                margin: 0; /* 移除默认边距 */
+                background-color: #f0f0f0; /* 可选：添加背景颜色以便于查看效果 */
+                font-family: Arial, sans-serif; /* 设置字体 */
+            }
+
+            /* 使<h2>居中并放大 */
+            h2 {
+                text-align: center; /* 水平居中 */
+                font-size: 24px; /* 放大字体大小 */
+                color: #333; /* 设置字体颜色 */
+                margin-bottom: 20px; /* 增加底部间距 */
+            }
+
+            /* 容器内元素水平排列 */
+            div {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                background-color: white; /* 背景颜色 */
+                padding: 20px; /* 内边距 */
+                border-radius: 10px; /* 圆角 */
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 阴影效果 */
+            }
+
+            /* 搜索框和按钮水平排列 */
+            fluent-text-field, fluent-button {
+                margin: 10px;
+                width: 300px; /* 固定宽度 */
+                font-size: 16px; /* 字体大小 */
+                border-radius: 5px; /* 圆角 */
+            }
+
+            /* 按钮样式 */
+            fluent-button {
+                background-color: #007bff; /* 背景颜色 */
+                color: white; /* 文字颜色 */
+                border: none; /* 移除边框 */
+                cursor: pointer; /* 指针样式 */
+                transition: transform 0.3s ease, background-color 0.3s ease; /* 平滑过渡 */
+            }
+
+            /* 按钮悬停效果 */
+            fluent-button:hover {
+                background-color: #0056b3; /* 悬停时背景颜色 */
+            }
+
+            /* 按钮点击动画 */
+            fluent-button.active {
+                transform: scale(0.95); /* 缩小 */
+                background-color: #0056b3; /* 改变背景颜色 */
+            }
+        </style>
+        <script type="module" src="https://registry.npmmirror.com/@fluentui/web-components/2.6.1/files/dist/web-components.min.js"></script>
+    </head>
+    <body>
+        <!-- 将内容包裹在一个div中，使其成为一个整体进行居中 -->
+        <div>
+            <h2>极客起始</h2>
+            <fluent-text-field id="searchInput" appearance="outline" placeholder="输入您要搜索的内容"></fluent-text-field>
+            <fluent-button id="searchButton" appearance="accent">搜索</fluent-button>
+        </div>
+
+        <script>
+            // 获取DOM元素
+            const searchInput = document.getElementById('searchInput');
+            const searchButton = document.getElementById('searchButton');
+
+            // 绑定点击事件
+            searchButton.addEventListener('click', function() {
+                const query = searchInput.value.trim();
+                if (query !== '') {
+                    searchButton.classList.add('active'); // 添加动画类
+                    setTimeout(() => {
+                        searchButton.classList.remove('active'); // 移除动画类
+                        window.location.href = 'https://bing.com/search?q=' + encodeURIComponent(query);
+                    }, 300); // 动画持续时间
+                } else {
+                    alert('请输入搜索关键词！');
+                }
+            });
+        </script>
+    </body>
+</html>
